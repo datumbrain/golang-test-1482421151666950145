@@ -27,7 +27,7 @@ Given a string that is a sequence of numbers followed by dash followed by text, 
    * the average word length
    * the list (or empty list) of all words from the story that have the length the same as the average length rounded up and down.
 
-# Task 2
+## Task 2
 
 * Before implementing the needed function, please estimate the difficulty of the functions and report the estimated and the used time to implement the functions in the function comment block.
 * Write a `generate` function, that takes boolean flag and generates random correct strings if the parameter is `true` and random incorrect strings if the flag is `false`.
