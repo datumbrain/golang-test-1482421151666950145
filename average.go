@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 )
@@ -24,6 +23,5 @@ func averageNumber(input string) float64 {
 		average /= float64(len(separatedNumbers)) // calculating average
 		return average
 	}
-	fmt.Println("invalid input string")
 	return 0
 }
