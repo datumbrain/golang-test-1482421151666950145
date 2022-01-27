@@ -37,6 +37,14 @@ func averageNumber(input string) float64 {
 	return 0
 }
 
+// wholeStory function that takes the string, and returns a text that is composed of all the text words separated by spaces
+// difficulty: Medium
+// estimated time: 30 minutes
+// actual time:
+func wholeStory(input string) string {
+
+}
+
 func main() {
 	fmt.Println(testValidity("23-ab-48-caba-56-haha")) // calling testValidity function and printing the output
 
