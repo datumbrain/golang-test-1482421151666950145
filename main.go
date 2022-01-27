@@ -96,6 +96,15 @@ func storyStats(input string) (string, string, float64, []string) {
 	return "", "", 0, nil
 }
 
+// generate function, takes boolean flag and generates random correct strings if the parameter is true and random
+// incorrect strings if the flag is false.
+// difficulty: medium
+// estimated time: 1 hour and 30 minutes
+// actual time: 1 hour and 25 minutes
+func generate(flag bool) string {
+
+}
+
 func main() {
 	// calling testValidity function and printing the output
 	isValid := testValidity("23-ab-48-caba-56-haha")
@@ -117,5 +126,6 @@ func main() {
 	fmt.Printf("shortest word: %s\n", shortestWord)
 	fmt.Printf("longest word: %s\n", longestWord)
 	fmt.Printf("average word length: %v\n", averageLength)
-	fmt.Printf("list of the words having length equals to the rounded avergae length: %v\n", list)
+	fmt.Printf("list of the words having length equals to the rounded average length: %v\n", list)
+	fmt.Println() // printing empty line
 }
