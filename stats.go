@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"regexp"
 )
@@ -43,6 +42,5 @@ func storyStats(input string) (string, string, float64, []string) {
 		return shortestWord, longestWord, averageLen, list
 	}
 
-	fmt.Println("invalid input string")
 	return "", "", 0, nil
 }

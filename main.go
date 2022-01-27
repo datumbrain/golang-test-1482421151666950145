@@ -16,7 +16,7 @@ func main() {
 	fmt.Println() // printing empty line
 
 	// calling the wholeStory function and printing the output
-	story := wholeStory("1-hello-2-world")
+	story := wholeStory("12-i-22-am-23-golang-45-developer")
 	fmt.Printf("story: %v\n", story)
 	fmt.Println() // printing empty line
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 )
@@ -18,6 +17,5 @@ func wholeStory(input string) string {
 		wholeStory = strings.Join(separatedWords, " ") // it will join the words to make a story string
 		return wholeStory
 	}
-	fmt.Println("invalid input string")
 	return ""
 }
