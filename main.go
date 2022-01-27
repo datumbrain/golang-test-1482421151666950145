@@ -54,6 +54,15 @@ func wholeStory(input string) string {
 	return ""
 }
 
+// storyStats function that returns the shortest word, the longest word, average word length and the list (or empty list) of all words
+// from the story that have same length as the average length rounded up and down.
+// difficulty: Medium
+// estimated time: 50 minutes
+// actual time:
+func storyStats(input string) (string, string, float64, []string) {
+
+}
+
 func main() {
 	fmt.Println(testValidity("23-ab-48-caba-56-haha")) // calling testValidity function and printing the output
 
