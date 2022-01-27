@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	regen "github.com/zach-klippenstein/goregen"
 	"math"
+	"math/rand"
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // testValidity function returns true or false based on the input string, is it comply on the defined format or not
@@ -102,7 +105,33 @@ func storyStats(input string) (string, string, float64, []string) {
 // estimated time: 1 hour and 30 minutes
 // actual time: 1 hour and 25 minutes
 func generate(flag bool) string {
+	if flag {
+		// this pattern helps to generate the random string of defined format e.g "3-ab-48-caba-56-haha"
+		pattern := "^((^([0-9]{1,4})-[a-z]{1,4})(((-)([0-9]{1,4})-([a-z]{1,4})){1,5}))$"
 
+		// Using a random seed (e.g. time-based) so we can generate random strings
+		x := rand.NewSource(time.Now().UnixNano())
+		y := rand.New(x)
+		generator, _ := regen.NewGenerator(pattern, &regen.GeneratorArgs{ // this function will generate the random string of the given pattern
+			RngSource: rand.NewSource(int64(y.Intn(10))),
+		})
+
+		str := generator.Generate()
+		return str
+	} else {
+		// this is a wrong pattern to generate the random wrong string
+		pattern := "^((^([0-9])-[0-9]{1,4})((([0-9]{1,4})([a-z]{1,4})){1,5}))$"
+
+		// Using a random seed (e.g. time-based) so we can generate random strings
+		x := rand.NewSource(time.Now().UnixNano())
+		y := rand.New(x)
+		generator, _ := regen.NewGenerator(pattern, &regen.GeneratorArgs{ // this function will generate the random string of the given pattern
+			RngSource: rand.NewSource(int64(y.Intn(10))),
+		})
+
+		str := generator.Generate()
+		return str
+	}
 }
 
 func main() {
@@ -128,4 +157,8 @@ func main() {
 	fmt.Printf("average word length: %v\n", averageLength)
 	fmt.Printf("list of the words having length equals to the rounded average length: %v\n", list)
 	fmt.Println() // printing empty line
+
+	// calling generate function and printing the output
+	str := generate(false)
+	fmt.Printf("random generated string: %v\n", str)
 }
