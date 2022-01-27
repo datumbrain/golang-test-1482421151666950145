@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 // testValidity function returns true or false based on the input string, is it comply on the defined format or not
@@ -40,9 +41,17 @@ func averageNumber(input string) float64 {
 // wholeStory function that takes the string, and returns a text that is composed of all the text words separated by spaces
 // difficulty: Medium
 // estimated time: 30 minutes
-// actual time:
+// actual time: 28 minutes
 func wholeStory(input string) string {
-
+	var wholeStory string
+	if testValidity(input) { // verify is input string comply on the format or not
+		re := regexp.MustCompile(`([a-z]+)`)           // regular expression used to separate the text words from the string
+		separatedWords := re.FindAllString(input, -1)  // it will give the array of separated text words
+		wholeStory = strings.Join(separatedWords, " ") // it will join the words to make a story string
+		return wholeStory
+	}
+	fmt.Println("invalid input string")
+	return ""
 }
 
 func main() {
@@ -50,4 +59,5 @@ func main() {
 
 	fmt.Println(averageNumber("1-hello-2-world-10-aa-02-cc")) // calling averageNUmber function and printing the output that must be equal to (1+2+10+2)/4 = 3.75
 
+	fmt.Println(wholeStory("1-hello-2-world")) // calling the wholeStory function and printing the output
 }
