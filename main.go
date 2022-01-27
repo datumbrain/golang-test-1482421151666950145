@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -58,15 +59,63 @@ func wholeStory(input string) string {
 // from the story that have same length as the average length rounded up and down.
 // difficulty: Medium
 // estimated time: 50 minutes
-// actual time:
+// actual time: 1 hour and 4 minutes
 func storyStats(input string) (string, string, float64, []string) {
+	var list []string
+	var shortestWord, longestWord string
+	var averageLen float64
+	if testValidity(input) { // verify is input string comply on the format or not
+		re := regexp.MustCompile(`([a-z]+)`)          // regular expression used to separate the text words from the string
+		separatedWords := re.FindAllString(input, -1) // it will give the array of separated text words
+		shortestWord = separatedWords[0]
+		longestWord = separatedWords[0]
+		for _, word := range separatedWords { // traverse int the separatedWords array
+			if len(word) > len(longestWord) { // if the current word is larger than the previous one, save it in the largestWord variable
+				longestWord = word
+			}
+			if len(word) < len(shortestWord) { // if the current word is shorter than the previous one, save it in the shortestWord variable
+				shortestWord = word
+			}
 
+			averageLen += float64(len(word))
+		}
+
+		averageLen /= float64(len(separatedWords))      // calculating average length of the words
+		roundedUpAverageLen := math.Ceil(averageLen)    // rounded up
+		roundedDownAverageLen := math.Floor(averageLen) // rounded down
+		for _, word := range separatedWords {           // find and store the words whose length equals to rounded average length
+			if float64(len(word)) == roundedUpAverageLen || float64(len(word)) == roundedDownAverageLen {
+				list = append(list, word)
+			}
+		}
+
+		return shortestWord, longestWord, averageLen, list
+	}
+
+	fmt.Println("invalid input string")
+	return "", "", 0, nil
 }
 
 func main() {
-	fmt.Println(testValidity("23-ab-48-caba-56-haha")) // calling testValidity function and printing the output
+	// calling testValidity function and printing the output
+	isValid := testValidity("23-ab-48-caba-56-haha")
+	fmt.Println(isValid)
+	fmt.Println() // printing empty line
 
-	fmt.Println(averageNumber("1-hello-2-world-10-aa-02-cc")) // calling averageNUmber function and printing the output that must be equal to (1+2+10+2)/4 = 3.75
+	// calling averageNUmber function and printing the output that must be equal to (1+2+10+2)/4 = 3.75
+	average := averageNumber("1-hello-2-world-10-aa-02-cc")
+	fmt.Printf("average of the numbers = %v\n", average)
+	fmt.Println() // printing empty line
 
-	fmt.Println(wholeStory("1-hello-2-world")) // calling the wholeStory function and printing the output
+	// calling the wholeStory function and printing the output
+	story := wholeStory("1-hello-2-world")
+	fmt.Printf("story: %v\n", story)
+	fmt.Println() // printing empty line
+
+	// calling storyStats function and printing the output
+	shortestWord, longestWord, averageLength, list := storyStats("11-hello-22-hi-33-world-44-golang-55-task")
+	fmt.Printf("shortest word: %s\n", shortestWord)
+	fmt.Printf("longest word: %s\n", longestWord)
+	fmt.Printf("average word length: %v\n", averageLength)
+	fmt.Printf("list of the words having length equals to the rounded avergae length: %v\n", list)
 }
